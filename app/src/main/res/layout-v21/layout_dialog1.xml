@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+    android:id="@+id/edit_From"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Var åker du ifrån?" />
+
+    <EditText
+        android:id="@+id/edit_To"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_From"
+        android:hint="Var åker du till?" />
+
+    <EditText
+        android:id="@+id/edit_Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_To"
+        android:hint="Vilket datum åker du?"
+        android:inputType= "date"/>
+
+    <EditText
+        android:id="@+id/edit_Seats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_Date"
+        android:hint="Antal platser?"
+        android:inputType= "number" />
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_Seats"
+        android:layout_marginTop="24dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+</RelativeLayout>
