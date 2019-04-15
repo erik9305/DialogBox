@@ -17,29 +17,45 @@
         android:layout_below="@id/edit_From"
         android:hint="Var åker du till?" />
 
-    <EditText
-        android:id="@+id/edit_Date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_To"
-        android:hint="Vilket datum åker du?"
-        android:inputType= "date"/>
 
     <EditText
         android:id="@+id/edit_Seats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_Date"
-        android:hint="Antal platser?"
+        android:layout_below="@id/edit_To"
+        android:hint="Antal passagerare?"
         android:inputType= "number" />
 
-    <DatePicker
-        android:id="@+id/datePicker1"
+    <TextView
+        android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_Seats"
-        android:layout_marginTop="24dp"
+        android:text="Välj datum:"
+        android:textSize="18dp"/>
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="378dp"
+        android:layout_height="131dp"
+        android:layout_below="@id/textViewDate"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePicker1"
+        android:text="Välj tid:"
+        android:textSize="18dp"/>
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="393dp"
+        android:layout_height="97dp"
+        android:layout_below="@id/textViewTime"
+        android:timePickerMode="spinner" />
+
 
 </RelativeLayout>

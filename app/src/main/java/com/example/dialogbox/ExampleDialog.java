@@ -3,21 +3,26 @@ package com.example.dialogbox;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 public class ExampleDialog extends AppCompatDialogFragment {
     private EditText editTextFrom;
     private EditText editTextTo;
-    private EditText editTextDate;
     private EditText editTextSeats;
+    private TextView textViewDate;
     private DatePicker datePicker;
+    private TimePicker timePicker;
     private ExampleDialogListener listener;
 
     @Override
@@ -36,22 +41,48 @@ public class ExampleDialog extends AppCompatDialogFragment {
                     }
                 })
                 .setPositiveButton("Lägg till", new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String from = editTextFrom.getText().toString();
-                        String to = editTextTo.getText().toString();
-                        String date = editTextDate.getText().toString();
-                        String seats = editTextSeats.getText().toString();
-                        String date2 = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        listener.applyTexts(from, to, date, seats, date2);
+                        String from = "Från: " + editTextFrom.getText().toString();
+                        String to = "Till: " + editTextTo.getText().toString();
+                        String seats = "Antal passagerare: " + editTextSeats.getText().toString();
+
+                        String year = Integer.toString(datePicker.getYear());
+                        String month = Integer.toString(datePicker.getMonth()+1);
+                        String day = Integer.toString(datePicker.getDayOfMonth());
+                        if(Integer.valueOf(month) < 10){
+
+                            month = "0" + month;
+                        }
+                        if(Integer.valueOf(day) < 10){
+
+                            day  = "0" + day ;
+                        }
+                        String date = day +"-"+ month + "-" + year;
+
+                        String hour = Integer.toString(timePicker.getHour());
+                        String minute = Integer.toString(timePicker.getMinute());
+                        if(Integer.valueOf(hour) < 10){
+
+                            hour = "0" + hour;
+                        }
+                        if(Integer.valueOf(minute) < 10){
+
+                            minute  = "0" + minute ;
+                        }
+                        String time = hour +":" + minute ;
+                        listener.applyTexts(from, to, date, seats, time);
                     }
                 });
 
         editTextFrom = view.findViewById(R.id.edit_From);
         editTextTo = view.findViewById(R.id.edit_To);
-        editTextDate = view.findViewById(R.id.edit_Date);
         editTextSeats = view.findViewById(R.id.edit_Seats);
+        textViewDate = view.findViewById(R.id.textViewDate);
         datePicker = view.findViewById(R.id.datePicker1);
+        timePicker = view.findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
 
         return builder.create();
     }
@@ -69,6 +100,6 @@ public class ExampleDialog extends AppCompatDialogFragment {
     }
 
     public interface ExampleDialogListener {
-        void applyTexts(String from, String to, String date, String seats, String date2);
+        void applyTexts(String from, String to, String date, String seats, String time);
     }
 }

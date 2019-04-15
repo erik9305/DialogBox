@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     private TextView textViewTo;
     private TextView textViewDate;
     private TextView textViewSeats;
-    private TextView textViewDate2;
+    private TextView textViewTime;
     private Button button;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         textViewTo = (TextView) findViewById(R.id.textview_to);
         textViewDate = (TextView) findViewById(R.id.textview_date);
         textViewSeats = (TextView) findViewById(R.id.textview_seats);
-        textViewDate2 = (TextView) findViewById(R.id.textview_date2);
+        textViewTime = (TextView) findViewById(R.id.textview_time);
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +39,12 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     }
 
     @Override
-    public void applyTexts(String from, String to, String date, String seats, String date2) {
+    public void applyTexts(String from, String to, String date, String seats, String time) {
         textViewFrom.setText(from);
         textViewTo.setText(to);
         textViewDate.setText(date);
         textViewSeats.setText(seats);
-        textViewDate2.setText(date2);
+        textViewTime.setText(time);
+
     }
 }
